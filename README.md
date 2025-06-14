@@ -36,7 +36,7 @@ Java 21 introduced Virtual Threads as a lightweight alternative to traditional P
 
 To run:
 ```
-java -cp target/classes com.khairul.stream.PlatformThreadFailureDemo
+java -cp target/classes com.khairul.thread.PlatformThreadFailureDemo
 ```
 
 Expected outcome: The program will fail with an error, demonstrating the limitations of platform threads.
@@ -47,7 +47,7 @@ Expected outcome: The program will fail with an error, demonstrating the limitat
 
 To run:
 ```
-java -cp target/classes com.khairul.stream.PlatformThreadMemoryFootprint
+java -cp target/classes com.khairul.thread.PlatformThreadMemoryFootprint
 ```
 
 Expected outcome: You'll see the memory usage increase significantly as more threads are created, potentially leading to an OutOfMemoryError.
@@ -58,7 +58,7 @@ Expected outcome: You'll see the memory usage increase significantly as more thr
 
 To run:
 ```
-java -cp target/classes com.khairul.stream.VirtualThreadSuccessDemo
+java -cp target/classes com.khairul.thread.VirtualThreadSuccessDemo
 ```
 
 Expected outcome: The program successfully completes all 100,000 tasks, showing the scalability of virtual threads.
