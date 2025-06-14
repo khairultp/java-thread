@@ -79,7 +79,3 @@ Expected outcome: The program successfully completes all 100,000 tasks, showing 
 ## Why Virtual Threads Matter
 
 Virtual threads enable a simpler programming model for high-throughput concurrent applications. They allow developers to use the familiar thread-per-request style without the performance limitations of platform threads.
-
-## License
-
-[Your License Information]
