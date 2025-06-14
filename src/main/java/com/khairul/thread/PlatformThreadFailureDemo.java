@@ -1,4 +1,4 @@
-package com.khairul.stream;
+package com.khairul.thread;
 
 import java.time.Duration;
 import java.time.Instant;
