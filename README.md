@@ -19,7 +19,7 @@ Java 21 introduced Virtual Threads as a lightweight alternative to traditional P
 
 1. Clone this repository:
    ```
-   git clone https://github.com/yourusername/java-thread.git
+   git clone https://github.com/khairultp/java-thread.git
    cd java-thread
    ```
 
