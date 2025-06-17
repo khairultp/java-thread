@@ -6,9 +6,10 @@ This project demonstrates the differences between Platform Threads and Virtual T
 
 Java 21 introduced Virtual Threads as a lightweight alternative to traditional Platform Threads. This project contains several demonstrations that showcase:
 
-1. The limitations of Platform Threads when handling high concurrency
-2. The memory footprint of Platform Threads
-3. The superior scalability of Virtual Threads
+1. The limitations of Platform Threads when handling high concurrency (PlatformThreadFailureDemo)
+2. The failure of fixed Platform Thread pools with large thread counts (FixedPlatformThreadFailureDemo)
+3. The superior scalability of Virtual Threads with unlimited thread creation (VirtualThreadSuccessDemo)
+4. The effectiveness of fixed Virtual Thread pools for controlled concurrency (FixedVirtualThreadPoolDemo)
 
 ## Prerequisites
 
@@ -28,43 +29,21 @@ Java 21 introduced Virtual Threads as a lightweight alternative to traditional P
    mvn clean package
    ```
 
-## Demonstrations
+## Running the Demonstrations
 
-### 1. Platform Thread Failure Demo
+This project includes a Maven Wrapper, which allows you to run Maven commands without having Maven installed on your system.
 
-`PlatformThreadFailureDemo.java` demonstrates how traditional platform threads fail when attempting to create a large number of threads (100,000). This is due to the significant memory overhead of platform threads.
+To run all demonstrations at once using the Main class:
 
-To run:
 ```
-java -cp target/classes com.khairul.thread.PlatformThreadFailureDemo
-```
-
-Expected outcome: The program will fail with an error, demonstrating the limitations of platform threads.
-
-### 2. Platform Thread Memory Footprint
-
-`PlatformThreadMemoryFootprint.java` shows the memory consumption of platform threads. It creates up to 20,000 platform threads and reports memory usage at regular intervals.
-
-To run:
-```
-java -cp target/classes com.khairul.thread.PlatformThreadMemoryFootprint
+./mvn-run
 ```
 
-Expected outcome: You'll see the memory usage increase significantly as more threads are created, potentially leading to an OutOfMemoryError.
+This command will execute the Main class, which calls all three demonstration classes in sequence.
 
-### 3. Virtual Thread Success Demo
+![Comparison of Platform Threads vs Virtual Threads](img.png)
 
-`VirtualThreadSuccessDemo.java` demonstrates how virtual threads can handle a much larger number of concurrent tasks (100,000) efficiently.
-
-To run:
-```
-java -cp target/classes com.khairul.thread.VirtualThreadSuccessDemo
-```
-
-Expected outcome: The program successfully completes all 100,000 tasks, showing the scalability of virtual threads.
-
-![Virtual Threads handling 100,000 concurrent tasks](vt-100k.png)
-*Figure: Performance visualization of Virtual Threads handling 100,000 concurrent tasks*
+*Figure: Comparison of Platform Threads vs Virtual Threads performance*
 
 ## Key Differences Between Platform and Virtual Threads
 

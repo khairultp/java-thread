@@ -1,39 +1,30 @@
 package com.khairul.thread;
 
 import java.time.Duration;
-import java.time.Instant;
-import java.util.concurrent.Executors;
-import java.util.stream.IntStream;
 
 public class PlatformThreadFailureDemo {
 
-    public static void main(String[] args) {
+    public static void start(int threadNum) {
+        System.out.printf("Starting simulation with %d tasks using Platform Threads....\n", threadNum);
+
+        int checkPoint = (int) (threadNum * 0.01);
+
         try {
-            Instant start = Instant.now();
-
-            try (var executor = Executors.newFixedThreadPool(100_000)) {
-                IntStream.range(0, 100_000).forEach(i -> {
-                    executor.submit(() -> {
-                        try {
-                            Thread.sleep(Duration.ofSeconds(0));
-                        } catch (InterruptedException e) {
-                            Thread.currentThread().interrupt();
-                        }
-
-                        if (i % 1000 == 0) {
-                            System.out.println("Task " + i + " completed.");
-                        }
-                    });
+            for (int i = 1; i <= threadNum; i++) {
+                Thread.ofPlatform().daemon(true).start(() -> {
+                    try {
+                        Thread.sleep(Duration.ofSeconds(1));
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
                 });
+
+                if ((i+1) % checkPoint == 0) {
+                    System.out.println("Task #-" + (i + 1) + " done.");
+                }
             }
-
-            Instant finish = Instant.now();
-            long timeElapsed = Duration.between(start, finish).toMillis();
-            System.out.println("Total time: " + timeElapsed + " ms");
-
         } catch (Throwable t) {
             System.err.println("\n==============================================");
-            System.err.println("Expected Error!");
             System.err.println("Error: " + t.getClass().getName());
             System.err.println("Message: " + t.getMessage());
             System.err.println("==============================================");
